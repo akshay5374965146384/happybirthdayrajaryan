@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 Happy Birthday Raj Aryan 🎉</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html, body {height:100%; width:100%;}
+  body {
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    position:relative;
+    background:black;
+  }
+
+  /* Background Video */
+  #bgVideo{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+  }
+
+  /* Typing Title */
+  h1 {
+    font-size:3.2vw;  /* थोड़ा छोटा किया ताकि स्क्रीन में फिट हो */
+    color:#fff;
+    text-shadow:0 0 20px #ff4081,0 0 30px #ff80ab;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:4px solid #fff;
+    display:inline-block;
+    text-align:center;
+    margin-bottom:3vh;
+  }
+
+  /* Quotes Container */
+  .quotes-container {
+    display:flex;
+    flex-direction:column;
+    gap:1.5vh;
+    max-width:90%;
+  }
+
+  p.quote {
+    color:#fff;
+    font-size:1.6vw; /* छोटा किया ताकि सभी कोट्स स्क्रीन में फिट हो जाएं */
+    font-weight:300;
+    margin:0;
+    text-shadow:0 0 15px #f50057,0 0 25px #ff80ab;
+    opacity:0;
+    animation:fadeIn 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* Footer / Creator */
+  footer {
+    position:absolute;
+    bottom:2vh;
+    font-size:1.5vw;
+    color:#fff;
+    text-shadow:0 0 10px #ff4081;
+  }
+
+  /* Desktop-specific */
+  @media(min-width:769px){
+    h1 { font-size:3vw; }
+    p.quote { font-size:1.5vw; }
+    footer { font-size:1.3vw; }
+  }
+
+  /* Mobile-specific */
+  @media(max-width:768px){
+    body { justify-content:flex-start; padding-top:10vh; }
+    h1 { font-size:6vw; margin-bottom:4vh; }
+    p.quote { font-size:3.5vw; line-height:1.4; }
+    footer { font-size:3vw; }
+  }
+
+  @media(max-width:480px){
+    h1 { font-size:7vw; margin-bottom:5vh; }
+    p.quote { font-size:4vw; line-height:1.4; }
+    footer { font-size:3.5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video id="bgVideo" autoplay muted loop>
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<!-- Typing Title -->
+<h1 id="typed"></h1>
+
+<!-- Quotes -->
+<div class="quotes-container" id="quotesContainer"></div>
+
+<!-- Footer / Creator Name -->
+<footer>Created ❤️ by Akshay Raj</footer>
+
+<!-- Background Music -->
+<audio id="music" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Typing effect for main title
+  const message = "🎂 Happy Birthday, Raj Aryan! 🎉";
+  const typedEl = document.getElementById("typed");
+  let index=0;
+  function typeWriter(){
+    if(index<message.length){
+      typedEl.innerHTML += message.charAt(index);
+      index++;
+      setTimeout(typeWriter,100);
+    } else {
+      showAllQuotes();
+    }
+  }
+  typeWriter();
+
+  // Quotes array
+  const quotes = [
+    "✨तुम्हारी मुस्कान हर जगह रौशनी बिखेर देती है, और तुम्हारी दोस्ती मेरी ज़िंदगी को बेहद ख़ास बना देती है। 💖",
+    "🌟तुम्हारी दोस्ती मेरे लिए एक अनमोल तोहफा है, जो हर दिन मुझे खुशियों से भर देता है। 🎁",
+    "🎉तुम्हारे साथ बिताए हर पल मेरे लिए एक यादगार जश्न की तरह है। चलो इस खास दिन को और भी खास बनाते हैं! 🥳",
+    "💫तुम्हारी दोस्ती मेरे जीवन की सबसे खूबसूरत कहानी है, जो हर दिन नए रंग और खुशियाँ लेकर आती है। 📖",
+    "🌈तुम्हारी दोस्ती मेरे जीवन में एक इंद्रधनुष की तरह है, जो हर मुश्किल घड़ी में मुझे उम्मीद और खुशी देता है। 🌟"
+  ];
+
+  const quotesContainer = document.getElementById("quotesContainer");
+
+  function showAllQuotes(){
+    quotes.forEach((quote, i)=>{
+      const p = document.createElement("p");
+      p.classList.add("quote");
+      p.style.animationDelay = `${i*0.6}s`; // थोड़ा सा स्लो एनिमेशन ताकि एक-एक लाइन अच्छे से दिखे
+      p.textContent = quote;
+      quotesContainer.appendChild(p);
+    });
+  }
+
+  // Auto-play music
+  const music = document.getElementById("music");
+  music.play().catch(()=>{ console.log("Autoplay blocked"); });
+</script>
+</body>
+</html>
